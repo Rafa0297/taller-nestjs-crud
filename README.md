@@ -1,98 +1,122 @@
+# README.md
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  Taller de NestJS: Creación de un CRUD de tareas personalizado
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Descripción
 
-## Project setup
+Este proyecto es un taller básico de **NestJS** para aprender a crear un **CRUD de tareas**.
+Aprenderás a manejar rutas, controladores, servicios y DTOs, y a estructurar un proyecto backend con TypeScript de manera sencilla y clara.
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## Requisitos
 
-```bash
-# development
-$ npm run start
+Antes de empezar, asegúrate de tener instalado:
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+- [Node.js](https://nodejs.org/) (versión recomendada >= 18)
+- npm (viene con Node.js)
+- Git
+- NestJS CLI:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install -g @nestjs/cli
 ```
 
-## Deployment
+---
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Clonar el proyecto
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Clona este repositorio en tu máquina local:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+git clone https://github.com/tu-usuario/mi-repo.git
+cd mi-repo
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+---
 
-## Resources
+## Instalación de dependencias
 
-Check out a few resources that may come in handy when working with NestJS:
+Instala todas las dependencias necesarias:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm install
+```
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Ejecutar el proyecto
 
-## Stay in touch
+Puedes correr el proyecto en distintos modos:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+# Modo desarrollo (con hot reload)
+npm run start:dev
 
-## License
+# Modo producción
+npm run start:prod
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+El backend quedará corriendo generalmente en `http://localhost:3000`.
+
+---
+
+## Estructura del CRUD de tareas
+
+1. **Controladores** (`tasks.controller.ts`): Reciben las solicitudes HTTP y llaman a los servicios.
+2. **Servicios** (`tasks.service.ts`): Contienen la lógica de negocio y manipulan los datos de tareas.
+3. **DTOs** (`create-task.dto.ts`, `update-task.dto.ts`): Definen cómo debe ser la estructura de los datos que entran y salen.
+4. **Entidades/Modelos**: Representan las tareas (en este proyecto básico pueden ser objetos en memoria o JSON).
+
+---
+
+## Crear y probar endpoints
+
+El CRUD incluye:
+
+- **Crear tarea:** `POST /tasks`
+- **Obtener todas las tareas:** `GET /tasks`
+- **Obtener tarea por ID:** `GET /tasks/:id`
+- **Actualizar tarea:** `PATCH /tasks/:id`
+- **Eliminar tarea:** `DELETE /tasks/:id`
+
+Puedes probarlos usando [Postman](https://www.postman.com/) o [Insomnia](https://insomnia.rest/).
+
+---
+
+## Tests
+
+Para ejecutar los tests:
+
+```bash
+# Tests unitarios
+npm run test
+
+# Tests de integración (e2e)
+npm run test:e2e
+
+# Cobertura de tests
+npm run test:cov
+```
+
+---
+
+## Recursos
+
+- [Documentación oficial de NestJS](https://docs.nestjs.com/)
+- [Tutoriales en vídeo de NestJS](https://courses.nestjs.com/)
+- [Discord oficial para soporte](https://discord.gg/G7Qnnhy)
+
+---
+
+## Licencia
+
+Este proyecto está bajo licencia **MIT**.
