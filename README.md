@@ -113,7 +113,7 @@ npm run test:cov
 
 - [Documentación oficial de NestJS](https://docs.nestjs.com/)
 - [Tutoriales en vídeo de NestJS](https://courses.nestjs.com/)
-- [Discord oficial para soporte](https://discord.gg/G7Qnnhy)
+- [Discord oficial para soporte](https://discord.gg/rafa_89605)
 
 ---
 
