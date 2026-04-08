@@ -2,52 +2,61 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Task } from './entities/task.entity';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class TasksService {
-  private tasks: Task[] = [];
   private idCounter = 1;
 
-  create(createTaskDto: CreateTaskDto): Task {
+  constructor(
+    @InjectRepository(Task) private taskRepository: Repository<Task>,
+  ) {}
+
+  async create(createTaskDto: CreateTaskDto): Promise<Task> {
     const newtask: Task = {
       id: this.idCounter++,
       title: createTaskDto.title,
       description: createTaskDto.description,
       isCompleted: false,
     };
-    this.tasks.push(newtask);
-    return newtask;
+    return await this.taskRepository.save(newtask);
   }
 
-  findAll() {
-    return this.tasks;
+  async findAll(): Promise<Task[]> {
+    return await this.taskRepository.find();
   }
 
-  findOne(id: number) {
-    return this.tasks.find((task) => task.id === id);
-  }
-
-  update(id: number, updateTaskDto: UpdateTaskDto): Task {
-    const task = this.tasks.find((task) => task.id === id);
+  async findOne(id: number) {
+    const task = await this.taskRepository.findOne({ where: { id } });
     if (!task) throw new NotFoundException(`Task with id ${id} not found`);
-
-    if (updateTaskDto.title !== undefined) {
-      task.title = updateTaskDto.title;
-    }
-
-    if (updateTaskDto.description !== undefined) {
-      task.description = updateTaskDto.description;
-    }
-
-    if (updateTaskDto.isCompleted !== undefined) {
-      task.isCompleted = updateTaskDto.isCompleted;
-    }
-
     return task;
   }
 
-  remove(id: number) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-    return { deleted: true };
+  async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const updatedTask = await this.taskRepository.findOne({ where: { id } });
+    if (!updatedTask)
+      throw new NotFoundException(`Task with id ${id} not found`);
+
+    if (updateTaskDto.title !== undefined) {
+      updatedTask.title = updateTaskDto.title;
+    }
+
+    if (updateTaskDto.description !== undefined) {
+      updatedTask.description = updateTaskDto.description;
+    }
+
+    if (updateTaskDto.isCompleted !== undefined) {
+      updatedTask.isCompleted = updateTaskDto.isCompleted;
+    }
+
+    return await this.taskRepository.save(updatedTask);
+  }
+
+  async remove(id: number) {
+    const task = await this.taskRepository.findOne({ where: { id } });
+    if (!task) throw new NotFoundException(`Task with id ${id} not found`);
+    await this.taskRepository.remove(task);
+    return { message: `Task with id ${id} has been removed` };
   }
 }
