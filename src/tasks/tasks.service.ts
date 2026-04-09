@@ -7,19 +7,12 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class TasksService {
-  private idCounter = 1;
-
   constructor(
     @InjectRepository(Task) private taskRepository: Repository<Task>,
   ) {}
 
   async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    const newtask: Task = {
-      id: this.idCounter++,
-      title: createTaskDto.title,
-      description: createTaskDto.description,
-      isCompleted: false,
-    };
+    const newtask = this.taskRepository.create(createTaskDto);
     return await this.taskRepository.save(newtask);
   }
 
@@ -27,34 +20,20 @@ export class TasksService {
     return await this.taskRepository.find();
   }
 
-  async findOne(id: number) {
-    const task = await this.taskRepository.findOne({ where: { id } });
+  async findOne(id: string) {
+    const task = await this.taskRepository.findOneBy({ id });
     if (!task) throw new NotFoundException(`Task with id ${id} not found`);
     return task;
   }
 
-  async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
-    const updatedTask = await this.taskRepository.findOne({ where: { id } });
-    if (!updatedTask)
-      throw new NotFoundException(`Task with id ${id} not found`);
-
-    if (updateTaskDto.title !== undefined) {
-      updatedTask.title = updateTaskDto.title;
-    }
-
-    if (updateTaskDto.description !== undefined) {
-      updatedTask.description = updateTaskDto.description;
-    }
-
-    if (updateTaskDto.isCompleted !== undefined) {
-      updatedTask.isCompleted = updateTaskDto.isCompleted;
-    }
-
+  async update(id: string, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    const task = await this.findOne(id);
+    const updatedTask = this.taskRepository.merge(task, updateTaskDto);
     return await this.taskRepository.save(updatedTask);
   }
 
-  async remove(id: number) {
-    const task = await this.taskRepository.findOne({ where: { id } });
+  async remove(id: string) {
+    const task = await this.taskRepository.findOneBy({ id });
     if (!task) throw new NotFoundException(`Task with id ${id} not found`);
     await this.taskRepository.remove(task);
     return { message: `Task with id ${id} has been removed` };

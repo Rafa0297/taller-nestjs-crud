@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Task {
-  @PrimaryGeneratedColumn() // ID autoincremental
-  id?: number;
+  @PrimaryGeneratedColumn('uuid') // ID autoincremental
+  id?: string;
 
   @Column() // Columna de texto
   title?: string;
